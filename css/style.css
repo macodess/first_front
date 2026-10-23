@@ -71,7 +71,8 @@ padding: .85rem 0;
 /***** Elemento #wrap *****/
 
 #wrap {
-    
+
+    /* Sticky footer */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -81,8 +82,10 @@ padding: .85rem 0;
 
 /* Seleciona o elemento "header" que é filho direto do emelento div#wrap */
 #wrap>header {
-background-color: rgb(11, 95, 163);
-padding: 2rem;
+    background-color: rgb(11, 95, 163);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Apenas imagem dentro do header. */
@@ -90,7 +93,8 @@ padding: 2rem;
 display: block;
 width: 5rem;
 height: auto;
-border-radius: 45%;
+border-radius: .4rem;
+
 }
 
 /* Elemento div que contém logo e nome do site. */
@@ -133,7 +137,8 @@ box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
 #wrap>header h1 {
 font-size: 1.7rem;
 color: #f7f7f7;
--webkit-text-stroke: .7px rgb(252, 255, 255);
+line-height: 1;
+-webkit-text-stroke: .7px rgba(244, 244, 247, 0.404);
 padding-left: .85rem;
 }
 
@@ -142,7 +147,7 @@ padding-left: .85rem;
 #wrap>nav {
     background-color: rgb(57, 129, 189);
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     border-top: 1px solid rgb(250, 248, 248);
     border-bottom: 1px solid rgb(253, 251, 251);
 }
@@ -156,6 +161,12 @@ padding-left: .85rem;
     color: rgb(245, 245, 245);
     transition: .2s;
 }
+
+/* Somente o primeiro filho <a> do <nav> */
+#wrap>nav a:first-child {
+    margin-right: auto;
+}
+
 /*Quando o cursor do mouse está sobre */
 
 #wrap>nav a:hover {
@@ -184,6 +195,7 @@ padding-left: .85rem;
 #wrap>footer a {
     padding: .5rem;
     color: #f7f7f7;
+    transition: .2s;
 }
 
 #wrap>footer a:hover {
@@ -217,14 +229,73 @@ padding-left: .85rem;
 #wrap>main aside {
     background-color: rgba(57, 130, 189, 0.76);
     padding: 0 1rem;
-    color: #fff;
+    color: #fff; /**cor da letra**/
 }
 
-/****** Classes de uso geral ******/
+/********************************/
+/***** Classes de uso geral *****/
+/********************************/
 
-
-/* Imagens responsivas */
+/* Imagens responsivas crescem até o tamanho original */
 img.responsive {
 max-width: 100%;
 width: auto;
+}
+
+/**************************/
+/***** RESPONSIVIDADE *****/
+/**************************/
+
+/***** Telas de 576px ou mais *****/
+@media screen and (min-width: 576px) {
+
+    /**** HEADER *****/
+    #wrap>header {
+        /* Elementos lado-a-lado */
+        flex-direction: row;
+         /* Na linha central */
+        align-items: center;
+        /* Afastados */
+        justify-content: space-between;
+    }
+
+     #wrap>header>div {
+        /* Logo e título crescem o máximo possível */
+        flex-grow: 1;
+    }
+}
+
+/***** Telas de 640px ou mais *****/
+@media screen and (min-width: 640px) {
+
+    /***** MENU PRINCIPAL *****/
+    #wrap>nav a {
+        /* Elementos lado-a-lado */
+        flex-direction: row;
+        /* Ajusta o preenchimento */
+        padding: .8rem 1rem;
+    }
+
+    #wrap>nav i {
+        /* Diminui ícones */
+        font-size: 1.4rem;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+
+    /***** CONTEÚDO PRINCIPAL *****/
+    #wrap>main {
+        flex-direction: row;
+    }
+
+    #wrap>main aside {
+        flex-basis: 250px;
+        /* Hack caso "flex-basis" falhe! */
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+
 }
